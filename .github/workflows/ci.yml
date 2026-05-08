@@ -32,5 +32,9 @@ jobs:
           python -m py_compile ray_ai.py
 
       - name: Run tests if exists
-        run: |
-          if [ -d tests ]; then pytest -q; else echo "No tests found"; fi
+  run: |
+    if [ -d tests ] && [ "$(ls -A tests)" ]; then
+      pytest -q
+    else
+      echo "No tests found, skipping."
+    fi
